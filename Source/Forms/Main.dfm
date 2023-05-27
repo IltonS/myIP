@@ -14,6 +14,7 @@ object FrmMain: TFrmMain
   Position = poScreenCenter
   OnCanResize = FormCanResize
   OnCreate = FormCreate
+  OnShow = FormShow
   TextHeight = 15
   object PageControl: TPageControl
     Left = 8
@@ -45,6 +46,7 @@ object FrmMain: TFrmMain
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
+        PopupMenu = PopupMenu
       end
       object Panel1: TPanel
         Left = 134
@@ -60,6 +62,7 @@ object FrmMain: TFrmMain
         Height = 25
         Caption = '&Refresh'
         TabOrder = 1
+        OnClick = BtnRefreshClick
       end
     end
   end
@@ -68,8 +71,23 @@ object FrmMain: TFrmMain
     Top = 400
     Width = 75
     Height = 25
-    Caption = '&Close'
+    Caption = 'C&lose'
     TabOrder = 0
     OnClick = BtnCloseClick
+  end
+  object PopupMenu: TPopupMenu
+    Left = 29
+    Top = 369
+    object BtnCopy: TMenuItem
+      Caption = '&Copy'
+      OnClick = BtnCopyClick
+    end
+  end
+  object Tmr1stRefresh: TTimer
+    Enabled = False
+    Interval = 250
+    OnTimer = Tmr1stRefreshTimer
+    Left = 118
+    Top = 369
   end
 end

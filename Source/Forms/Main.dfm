@@ -3,8 +3,8 @@ object FrmMain: TFrmMain
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'What'#39's my IP'
-  ClientHeight = 438
-  ClientWidth = 359
+  ClientHeight = 428
+  ClientWidth = 798
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -75,9 +75,18 @@ object FrmMain: TFrmMain
     TabOrder = 0
     OnClick = BtnCloseClick
   end
+  object Panel2: TPanel
+    Left = 368
+    Top = 40
+    Width = 409
+    Height = 345
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 2
+  end
   object PopupMenu: TPopupMenu
-    Left = 29
-    Top = 369
+    Left = 405
+    Top = 57
     object BtnCopy: TMenuItem
       Caption = '&Copy'
       OnClick = BtnCopyClick
@@ -87,7 +96,36 @@ object FrmMain: TFrmMain
     Enabled = False
     Interval = 250
     OnTimer = Tmr1stRefreshTimer
-    Left = 118
-    Top = 369
+    Left = 542
+    Top = 54
+  end
+  object IdHTTP: TIdHTTP
+    IOHandler = IdSSLIOHandlerSocketOpenSSL
+    ProxyParams.BasicAuthentication = False
+    ProxyParams.ProxyPort = 0
+    Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
+    Request.Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    Request.BasicAuthentication = False
+    Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
+    HTTPOptions = [hoForceEncodeParams]
+    Left = 406
+    Top = 122
+  end
+  object IdSSLIOHandlerSocketOpenSSL: TIdSSLIOHandlerSocketOpenSSL
+    MaxLineAction = maException
+    Port = 0
+    DefaultPort = 0
+    SSLOptions.Method = sslvTLSv1_2
+    SSLOptions.SSLVersions = [sslvTLSv1_2]
+    SSLOptions.Mode = sslmUnassigned
+    SSLOptions.VerifyMode = []
+    SSLOptions.VerifyDepth = 0
+    Left = 544
+    Top = 122
   end
 end

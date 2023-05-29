@@ -2,7 +2,6 @@
 
 #include <vcl.h>
 #include <Clipbrd.hpp>
-#include "Http.h"
 #pragma hdrstop
 
 #include "Main.h"
@@ -15,7 +14,7 @@ UnicodeString TFrmMain::PublicIP()
 {
 	try
 	{
-		return DmHttp->IdHTTP->Get("https://api.ipify.org/");
+		return IdHTTP->Get("https://api.ipify.org/");
 	}
 	catch (Exception &exception)
 	{

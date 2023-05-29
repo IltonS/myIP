@@ -35,6 +35,9 @@ __published:	// IDE-managed Components
 	TPopupMenu *PopupMenu;
 	TMenuItem *BtnCopy;
 	TTimer *Tmr1stRefresh;
+	TPanel *Panel2;
+	TIdHTTP *IdHTTP;
+	TIdSSLIOHandlerSocketOpenSSL *IdSSLIOHandlerSocketOpenSSL;
 	void __fastcall FormCanResize(TObject *Sender, int &NewWidth, int &NewHeight, bool &Resize);
 	void __fastcall BtnCloseClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);

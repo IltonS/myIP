@@ -3,8 +3,8 @@ object FrmMain: TFrmMain
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'What'#39's my IP'
-  ClientHeight = 428
-  ClientWidth = 798
+  ClientHeight = 427
+  ClientWidth = 794
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,37 +32,64 @@ object FrmMain: TFrmMain
         Height = 15
         Caption = 'Your public IP address'
       end
-      object LblIP: TLabel
-        Left = 8
+      object LblPublicIPv4: TLabel
+        Left = 268
         Top = 42
-        Width = 305
-        Height = 32
-        Alignment = taCenter
-        AutoSize = False
+        Width = 45
+        Height = 15
+        Alignment = taRightJustify
         Caption = '127.0.0.1'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -24
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        PopupMenu = PopupMenu
+      end
+      object Label2: TLabel
+        Left = 17
+        Top = 42
+        Width = 61
+        Height = 15
+        Caption = 'Public IPv4:'
+      end
+      object Label3: TLabel
+        Left = 17
+        Top = 64
+        Width = 61
+        Height = 15
+        Caption = 'Public IPv6:'
+      end
+      object LblPublicIPv6: TLabel
+        Left = 301
+        Top = 64
+        Width = 12
+        Height = 15
+        Alignment = taRightJustify
+        Caption = '::1'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
         PopupMenu = PopupMenu
       end
       object Panel1: TPanel
-        Left = 134
+        Left = 132
         Top = 21
-        Width = 179
+        Width = 181
         Height = 1
         TabOrder = 0
       end
       object BtnRefresh: TButton
         Left = 238
-        Top = 91
+        Top = 93
         Width = 75
         Height = 25
-        Caption = '&Refresh'
+        Action = ActRefresh
         TabOrder = 1
-        OnClick = BtnRefreshClick
       end
     end
   end
@@ -94,7 +121,7 @@ object FrmMain: TFrmMain
   end
   object Tmr1stRefresh: TTimer
     Enabled = False
-    Interval = 250
+    Interval = 500
     OnTimer = Tmr1stRefreshTimer
     Left = 542
     Top = 54
@@ -127,5 +154,15 @@ object FrmMain: TFrmMain
     SSLOptions.VerifyDepth = 0
     Left = 544
     Top = 122
+  end
+  object ActionList: TActionList
+    Left = 628
+    Top = 54
+    object ActRefresh: TAction
+      Caption = '&Refresh'
+      Enabled = False
+      ShortCut = 116
+      OnExecute = ActRefreshExecute
+    end
   end
 end

@@ -21,6 +21,10 @@
 #include <IdSSL.hpp>
 #include <IdSSLOpenSSL.hpp>
 #include <Vcl.Menus.hpp>
+#include <Clipbrd.hpp>
+#include "IPUtils.h"
+#include <System.Actions.hpp>
+#include <Vcl.ActnList.hpp>
 //---------------------------------------------------------------------------
 class TFrmMain : public TForm
 {
@@ -30,7 +34,7 @@ __published:	// IDE-managed Components
 	TButton *BtnClose;
 	TLabel *Label1;
 	TPanel *Panel1;
-	TLabel *LblIP;
+	TLabel *LblPublicIPv4;
 	TButton *BtnRefresh;
 	TPopupMenu *PopupMenu;
 	TMenuItem *BtnCopy;
@@ -38,18 +42,26 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TIdHTTP *IdHTTP;
 	TIdSSLIOHandlerSocketOpenSSL *IdSSLIOHandlerSocketOpenSSL;
+	TLabel *Label2;
+	TLabel *Label3;
+	TLabel *LblPublicIPv6;
+	TActionList *ActionList;
+	TAction *ActRefresh;
 	void __fastcall FormCanResize(TObject *Sender, int &NewWidth, int &NewHeight, bool &Resize);
 	void __fastcall BtnCloseClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
-	void __fastcall BtnRefreshClick(TObject *Sender);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall BtnCopyClick(TObject *Sender);
 	void __fastcall Tmr1stRefreshTimer(TObject *Sender);
+	void __fastcall ActRefreshExecute(TObject *Sender);
 
 private:	// User declarations
-	UnicodeString PublicIP();
+	TIPInfo IPInfo;
+	UnicodeString GetPublicIPv4();
+	UnicodeString GetPublicIPv6();
 public:		// User declarations
 	__fastcall TFrmMain(TComponent* Owner);
+    void LoadIPInfo();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TFrmMain *FrmMain;

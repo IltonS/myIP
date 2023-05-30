@@ -110,6 +110,7 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -126,8 +127,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib</LinkPackageStatics>
-        <VerInfo_Build>5</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.5;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>8</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.8;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>
@@ -135,8 +136,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib</LinkPackageStatics>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>6</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.6;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (64-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>9</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.9;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (64-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>
@@ -145,6 +146,10 @@
             <FormType>dfm</FormType>
             <DependentOn>Forms\Main.h</DependentOn>
             <BuildOrder>2</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="Modules\IPUtils.cpp">
+            <DependentOn>Modules\IPUtils.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
         </CppCompile>
         <CppCompile Include="myip.cpp">
             <BuildOrder>0</BuildOrder>

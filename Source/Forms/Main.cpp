@@ -38,10 +38,50 @@ UnicodeString TFrmMain::GetPublicIPv6()
 	}
 }
 //---------------------------------------------------------------------------
+void TFrmMain::InsertDetails(UnicodeString AProperty, UnicodeString AValue)
+{
+	CdsDetails->Insert();
+	CdsDetails->FieldByName("Property")->Value = AProperty;
+	CdsDetails->FieldByName("Value")->Value = AValue;
+	CdsDetails->Post();
+}
+//---------------------------------------------------------------------------
+void TFrmMain::GetIPGeolocation()
+{
+	UnicodeString Response;
+	TJSONObject *JSONObject;
+
+	try
+	{
+		Response = IdHTTP->Get("http://ip-api.com/json/");
+		JSONObject = (TJSONObject*) TJSONObject::ParseJSONValue(Response);
+
+		CdsDetails->Open();
+
+		InsertDetails("AS", JSONObject->GetValue("as")->Value());
+		InsertDetails("Org", JSONObject->GetValue("org")->Value());
+		InsertDetails("ISP", JSONObject->GetValue("isp")->Value());
+		InsertDetails("Time Zone", JSONObject->GetValue("timezone")->Value());
+		InsertDetails("Longitude", JSONObject->GetValue("lon")->Value());
+		InsertDetails("Latitude", JSONObject->GetValue("lat")->Value());
+		InsertDetails("Zip", JSONObject->GetValue("zip")->Value());
+		InsertDetails("City", JSONObject->GetValue("city")->Value());
+		InsertDetails("Region Name", JSONObject->GetValue("regionName")->Value());
+		InsertDetails("Region", JSONObject->GetValue("region")->Value());
+		InsertDetails("Country Code", JSONObject->GetValue("countryCode")->Value());
+		InsertDetails("Country", JSONObject->GetValue("country")->Value());
+	}
+	__finally
+	{
+        JSONObject->Free();
+	}
+}
+//---------------------------------------------------------------------------
 void TFrmMain::LoadIPInfo()
 {
 	IPInfo.PublicIPv4 = GetPublicIPv4();
 	IPInfo.PublicIPv6 = GetPublicIPv6();
+    GetIPGeolocation();
 }
 //---------------------------------------------------------------------------
 void __fastcall TFrmMain::FormCanResize(TObject *Sender, int &NewWidth, int &NewHeight,
@@ -96,6 +136,7 @@ void __fastcall TFrmMain::ActRefreshExecute(TObject *Sender)
 	{
 		ActRefresh->Enabled = false;
 		Screen->Cursor = crHourGlass;
+        Application->ProcessMessages();
 
 		LoadIPInfo();
 

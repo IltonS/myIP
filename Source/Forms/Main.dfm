@@ -76,6 +76,13 @@ object FrmMain: TFrmMain
         ParentFont = False
         PopupMenu = PopupMenu
       end
+      object Label4: TLabel
+        Left = 8
+        Top = 93
+        Width = 38
+        Height = 15
+        Caption = 'Details:'
+      end
       object Panel1: TPanel
         Left = 132
         Top = 21
@@ -84,12 +91,34 @@ object FrmMain: TFrmMain
         TabOrder = 0
       end
       object BtnRefresh: TButton
-        Left = 238
-        Top = 93
+        Left = 234
+        Top = 306
         Width = 75
         Height = 25
         Action = ActRefresh
         TabOrder = 1
+      end
+      object DbgDetails: TDBGrid
+        Left = 17
+        Top = 121
+        Width = 292
+        Height = 174
+        DataSource = DsDetails
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        ReadOnly = True
+        TabOrder = 2
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+      end
+      object Panel3: TPanel
+        Left = 53
+        Top = 102
+        Width = 256
+        Height = 1
+        TabOrder = 3
       end
     end
   end
@@ -156,7 +185,7 @@ object FrmMain: TFrmMain
     Top = 122
   end
   object ActionList: TActionList
-    Left = 628
+    Left = 687
     Top = 54
     object ActRefresh: TAction
       Caption = '&Refresh'
@@ -164,5 +193,40 @@ object FrmMain: TFrmMain
       ShortCut = 116
       OnExecute = ActRefreshExecute
     end
+  end
+  object CdsDetails: TClientDataSet
+    PersistDataPacket.Data = {
+      510000009619E0BD01000000180000000200000000000300000051000850726F
+      706572747901004900000001000557494454480200020014000556616C756501
+      004900000001000557494454480200020014000000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'Property'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'Value'
+        DataType = ftString
+        Size = 20
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 407
+    Top = 189
+    object CdsDetailsProperty: TStringField
+      FieldName = 'Property'
+    end
+    object CdsDetailsValue: TStringField
+      FieldName = 'Value'
+    end
+  end
+  object DsDetails: TDataSource
+    DataSet = CdsDetails
+    Left = 545
+    Top = 189
   end
 end

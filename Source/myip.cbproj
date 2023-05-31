@@ -127,8 +127,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib</LinkPackageStatics>
-        <VerInfo_Build>8</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.8;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>9</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.9;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>

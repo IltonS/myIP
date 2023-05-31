@@ -25,6 +25,11 @@
 #include "IPUtils.h"
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
+#include <system.JSON.hpp>
+#include <Data.DB.hpp>
+#include <Datasnap.DBClient.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
 //---------------------------------------------------------------------------
 class TFrmMain : public TForm
 {
@@ -47,6 +52,13 @@ __published:	// IDE-managed Components
 	TLabel *LblPublicIPv6;
 	TActionList *ActionList;
 	TAction *ActRefresh;
+	TClientDataSet *CdsDetails;
+	TStringField *CdsDetailsValue;
+	TDataSource *DsDetails;
+	TDBGrid *DbgDetails;
+	TStringField *CdsDetailsProperty;
+	TPanel *Panel3;
+	TLabel *Label4;
 	void __fastcall FormCanResize(TObject *Sender, int &NewWidth, int &NewHeight, bool &Resize);
 	void __fastcall BtnCloseClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
@@ -59,9 +71,11 @@ private:	// User declarations
 	TIPInfo IPInfo;
 	UnicodeString GetPublicIPv4();
 	UnicodeString GetPublicIPv6();
+	void GetIPGeolocation();
+	void InsertDetails(UnicodeString AProperty, UnicodeString AValue);
 public:		// User declarations
 	__fastcall TFrmMain(TComponent* Owner);
-    void LoadIPInfo();
+	void LoadIPInfo();
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TFrmMain *FrmMain;

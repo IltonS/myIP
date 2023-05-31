@@ -16,9 +16,13 @@ __fastcall TFrmMain::TFrmMain(TComponent* Owner)
 //---------------------------------------------------------------------------
 UnicodeString TFrmMain::GetPublicIPv4()
 {
+	UnicodeString Result;
+
 	try
 	{
-		return IdHTTP->Get("https://api.ipify.org/");
+		Result = IdHTTP->Get("https://api.ipify.org/");
+		IdHTTP->Request->Clear();
+		return Result;
 	}
 	catch (Exception &exception)
 	{
@@ -28,9 +32,13 @@ UnicodeString TFrmMain::GetPublicIPv4()
 //---------------------------------------------------------------------------
 UnicodeString TFrmMain::GetPublicIPv6()
 {
+	UnicodeString Result;
+
 	try
 	{
-		return IdHTTP->Get("https://[api64.ipify.org]");
+		Result = IdHTTP->Get("https://[api64.ipify.org]");
+		IdHTTP->Request->Clear();
+		return Result;
 	}
 	catch (Exception &exception)
 	{
@@ -54,9 +62,13 @@ void TFrmMain::GetIPGeolocation()
 	try
 	{
 		Response = IdHTTP->Get("http://ip-api.com/json/");
+		IdHTTP->Request->Clear();
+
 		JSONObject = (TJSONObject*) TJSONObject::ParseJSONValue(Response);
 
 		CdsDetails->Open();
+
+        CdsDetails->EmptyDataSet();
 
 		InsertDetails("AS", JSONObject->GetValue("as")->Value());
 		InsertDetails("Org", JSONObject->GetValue("org")->Value());
@@ -105,6 +117,7 @@ void __fastcall TFrmMain::FormCreate(TObject *Sender)
 
 void __fastcall TFrmMain::FormShow(TObject *Sender)
 {
+	LastUpdate = IncSecond(Now(), -120);
 	Tmr1stRefresh->Enabled = true;
 }
 //---------------------------------------------------------------------------
@@ -132,22 +145,32 @@ void __fastcall TFrmMain::Tmr1stRefreshTimer(TObject *Sender)
 
 void __fastcall TFrmMain::ActRefreshExecute(TObject *Sender)
 {
-		try
+	try
 	{
 		ActRefresh->Enabled = false;
 		Screen->Cursor = crHourGlass;
-        Application->ProcessMessages();
+		Application->ProcessMessages();
 
-		LoadIPInfo();
+		if ( MinutesBetween(Now(), LastUpdate) >= 1 ) {
+			LoadIPInfo();
 
-		LblPublicIPv4->Caption = IPInfo.PublicIPv4;
-		LblPublicIPv6->Caption = IPInfo.PublicIPv6;
+			LblPublicIPv4->Caption = IPInfo.PublicIPv4;
+			LblPublicIPv6->Caption = IPInfo.PublicIPv6;
+			LastUpdate = Now();
+		}
 	}
 	__finally
 	{
 		Screen->Cursor = crDefault;
 		ActRefresh->Enabled = true;
 	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFrmMain::ActForceRefreshExecute(TObject *Sender)
+{
+	LastUpdate = IncSecond(Now(), -120);
+    ActRefreshExecute(Sender);
 }
 //---------------------------------------------------------------------------
 

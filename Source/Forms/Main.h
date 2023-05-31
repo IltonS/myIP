@@ -30,6 +30,7 @@
 #include <Datasnap.DBClient.hpp>
 #include <Vcl.DBGrids.hpp>
 #include <Vcl.Grids.hpp>
+#include <System.DateUtils.hpp>
 //---------------------------------------------------------------------------
 class TFrmMain : public TForm
 {
@@ -59,6 +60,7 @@ __published:	// IDE-managed Components
 	TStringField *CdsDetailsProperty;
 	TPanel *Panel3;
 	TLabel *Label4;
+	TAction *ActForceRefresh;
 	void __fastcall FormCanResize(TObject *Sender, int &NewWidth, int &NewHeight, bool &Resize);
 	void __fastcall BtnCloseClick(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
@@ -66,9 +68,11 @@ __published:	// IDE-managed Components
 	void __fastcall BtnCopyClick(TObject *Sender);
 	void __fastcall Tmr1stRefreshTimer(TObject *Sender);
 	void __fastcall ActRefreshExecute(TObject *Sender);
+	void __fastcall ActForceRefreshExecute(TObject *Sender);
 
 private:	// User declarations
 	TIPInfo IPInfo;
+	TDateTime LastUpdate;
 	UnicodeString GetPublicIPv4();
 	UnicodeString GetPublicIPv6();
 	void GetIPGeolocation();

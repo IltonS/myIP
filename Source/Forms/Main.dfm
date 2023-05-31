@@ -176,8 +176,8 @@ object FrmMain: TFrmMain
     MaxLineAction = maException
     Port = 0
     DefaultPort = 0
-    SSLOptions.Method = sslvTLSv1_2
-    SSLOptions.SSLVersions = [sslvTLSv1_2]
+    SSLOptions.Method = sslvSSLv23
+    SSLOptions.SSLVersions = [sslvTLSv1_1, sslvTLSv1_2]
     SSLOptions.Mode = sslmUnassigned
     SSLOptions.VerifyMode = []
     SSLOptions.VerifyDepth = 0
@@ -192,6 +192,11 @@ object FrmMain: TFrmMain
       Enabled = False
       ShortCut = 116
       OnExecute = ActRefreshExecute
+    end
+    object ActForceRefresh: TAction
+      Caption = 'ActForceRefresh'
+      ShortCut = 16500
+      OnExecute = ActForceRefreshExecute
     end
   end
   object CdsDetails: TClientDataSet

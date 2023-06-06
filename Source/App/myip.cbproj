@@ -7,7 +7,7 @@
         <MainSource>myip.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Dev</Config>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -114,30 +114,31 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi;dbrtl.bpi;vcldb.bpi;vclwinx.bpi;vclimg.bpi;bindengine.bpi;dsnap.bpi</LinkPackageImports>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <FinalOutputDir>..\..\Bin\$(Platform)\$(Config)</FinalOutputDir>
         <IntermediateOutputDir>..\..\Lib\$(Platform)\$(Config)</IntermediateOutputDir>
-        <VerInfo_Locale>1046</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.0;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.0;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <Defines>_DEBUG;$(Defines)</Defines>
         <UsePackages>false</UsePackages>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <VerInfo_Debug>true</VerInfo_Debug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;dsnap.lib</LinkPackageStatics>
-        <VerInfo_Build>12</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.12;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>13</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.13;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit) - Dev;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;dsnap.lib</LinkPackageStatics>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>13</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.13;InternalName=;LegalCopyright=IltonS;LegalTrademarks=IltonS;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (64-bit);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>14</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.14;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (64-bit) - Dev;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>

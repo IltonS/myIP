@@ -152,11 +152,26 @@ void __fastcall TFrmMain::ActRefreshExecute(TObject *Sender)
 		Application->ProcessMessages();
 
 		if ( MinutesBetween(Now(), LastUpdate) >= 1 ) {
-			LoadIPInfo();
+			try
+			{
+				LoadIPInfo();
 
-			LblPublicIPv4->Caption = IPInfo.PublicIPv4;
-			LblPublicIPv6->Caption = IPInfo.PublicIPv6;
-			LastUpdate = Now();
+				LblPublicIPv4->Caption = IPInfo.PublicIPv4;
+				LblPublicIPv6->Caption = IPInfo.PublicIPv6;
+				LastUpdate = Now();
+			}
+			catch (Exception &exception)
+			{
+				UnicodeString errorText = "An unexpected network error occurred. Please, refresh to try again.";
+				MessageDlg(errorText, mtError, TMsgDlgButtons() << mbOK, 0);
+
+				LblPublicIPv4->Caption = "127.0.0.1";
+				LblPublicIPv6->Caption = "::1";
+
+				CdsDetails->EmptyDataSet();
+
+				LastUpdate = IncSecond(Now(), -120);
+			}
 		}
 	}
 	__finally
@@ -170,7 +185,7 @@ void __fastcall TFrmMain::ActRefreshExecute(TObject *Sender)
 void __fastcall TFrmMain::ActForceRefreshExecute(TObject *Sender)
 {
 	LastUpdate = IncSecond(Now(), -120);
-    ActRefreshExecute(Sender);
+	ActRefreshExecute(Sender);
 }
 //---------------------------------------------------------------------------
 

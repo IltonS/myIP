@@ -6,7 +6,7 @@
         <AppType>Application</AppType>
         <MainSource>myip.cpp</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Dev</Config>
+        <Config Condition="'$(Config)'==''">Stable</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
@@ -23,7 +23,7 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+    <PropertyGroup Condition="'$(Config)'=='Stable' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
@@ -89,6 +89,7 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <BCC_PCHName_Clang>myipPCH1.h</BCC_PCHName_Clang>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -104,17 +105,28 @@
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
         <TASM_Debugging>None</TASM_Debugging>
-        <VerInfo_Locale>1046</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.1.1;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <FinalOutputDir>..\..\Bin\$(Platform)\$(Config)</FinalOutputDir>
+        <IntermediateOutputDir>..\..\Lib\$(Platform)\$(Config)</IntermediateOutputDir>
+        <BPILibOutputDir>..\..\Lib\$(Platform)\$(Config)</BPILibOutputDir>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Build>1</VerInfo_Build>
+        <UsePackages>false</UsePackages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi</LinkPackageImports>
+        <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;dsnap.lib</LinkPackageStatics>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.1.1;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit);ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <Icon_MainIcon>Res\Stable\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;IndySystem.bpi;IndyProtocols.bpi;IndyCore.bpi;dbrtl.bpi;vcldb.bpi;vclwinx.bpi;vclimg.bpi;bindengine.bpi;dsnap.bpi</LinkPackageImports>
+        <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;dsnap.lib</LinkPackageStatics>
+        <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.1.1;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (64-bit);ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <Icon_MainIcon>Res\Stable\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <FinalOutputDir>..\..\Bin\$(Platform)\$(Config)</FinalOutputDir>
@@ -126,12 +138,12 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Debug>true</VerInfo_Debug>
+        <BPILibOutputDir>..\..\Lib\$(Platform)\$(Config)</BPILibOutputDir>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <LinkPackageStatics>rtl.lib;vcl.lib;IndySystem.lib;IndyProtocols.lib;IndyCore.lib;dbrtl.lib;vcldb.lib;vclwinx.lib;vclimg.lib;bindengine.lib;dsnap.lib</LinkPackageStatics>
         <VerInfo_Build>15</VerInfo_Build>
         <VerInfo_Keys>CompanyName=IltonS;FileDescription=Displays info about your public IP address;FileVersion=1.0.0.15;InternalName=;LegalCopyright=(c) 2023 Ilton Sequeira;LegalTrademarks=MIT License;OriginalFilename=myip.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=My IP (32-bit) - Dev;ProductVersion=1.0;Comments=</VerInfo_Keys>
-        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>Res\Dev\myip.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win64)'!=''">
@@ -167,7 +179,7 @@
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
-        <BuildConfiguration Include="Release">
+        <BuildConfiguration Include="Stable">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
